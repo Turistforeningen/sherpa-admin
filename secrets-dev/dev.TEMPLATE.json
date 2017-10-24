@@ -1,0 +1,9 @@
+{
+  "APP_SECRET": "",
+  "SENTRY_DSN": "",
+  "OAUTH_CLIENT_ID": "",
+  "OAUTH_CLIENT_SECRET": "",
+  "OAUTH_DOMAIN": "",
+  "GA_CODE": "",
+  "GTM_CODE": ""
+}

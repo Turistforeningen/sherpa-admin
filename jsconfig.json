@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "experimentalDecorators": true
+  },
+  "exclude": [
+    "server/node_modules",
+    "client/node_modules"
+  ]
+}

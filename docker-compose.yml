@@ -1,0 +1,59 @@
+version: '2'
+
+services:
+  server:
+    build: server
+    network_mode: 'bridge'
+    ports:
+      - '8080'
+    volumes:
+      - .:/usr/src/app
+    working_dir: /usr/src/app
+    links:
+      - redis
+    depends_on:
+      - redis
+    logging:
+      options:
+        max-size: "500k"
+    environment:
+      - NODE_ENV=development
+      - NPM_CONFIG_LOGLEVEL=info
+      - NPM_CONFIG_PROGRESS=false
+      - NPM_CONFIG_SPIN=false
+      - VIRTUAL_HOST=admin-client.dnt.local
+      - VIRTUAL_PORT=8080
+      - VIRTUAL_PATH=/
+      - LIBRATO_PREFIX=sherpa-admin-client
+      - LIBRATO_SOURCE=sherpa-admin-client-dev
+    command: nodemon --watch server server/index.js
+    extra_hosts:
+      - "www.dnt.local:10.200.10.1"
+      - "admin-client-assets.dnt.local:10.200.10.1"
+
+  client:
+    build: client
+    network_mode: 'bridge'
+    ports:
+      - '3000'
+    volumes:
+      - .:/usr/src/app
+    working_dir: /usr/src/app/client
+    environment:
+      - NODE_ENV=development
+      - NPM_CONFIG_LOGLEVEL=info
+      - NPM_CONFIG_PROGRESS=false
+      - NPM_CONFIG_SPIN=false
+      - VIRTUAL_HOST=admin-client-assets.dnt.local
+      - VIRTUAL_PORT=3000
+    logging:
+      options:
+        max-size: "500k"
+    command: nodemon --watch client/webpack.config.js --exec "npm run webpack:serve"
+
+  redis:
+    image: redis:3
+    network_mode: 'bridge'
+    logging:
+      options:
+        max-size: "10k"
