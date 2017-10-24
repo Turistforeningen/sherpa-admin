@@ -1,5 +1,5 @@
-import * as fetchTypes from 'core/actions/user/fetch';
-import * as logoutTypes from 'core/actions/user/logout';
+import * as fetchTypes from 'core/actions/user/fetch'
+import * as logoutTypes from 'core/actions/user/logout'
 
 
 const data = (state = {}, action) => {
@@ -7,13 +7,13 @@ const data = (state = {}, action) => {
     case fetchTypes.SUCCESS:
       return action.payload.user
         ? action.payload.user
-        : state;
+        : state
     case logoutTypes.LOGOUT:
-      return {};
+      return {}
     default:
-      return state;
+      return state
   }
-};
+}
 
 
-export default data;
+export default data

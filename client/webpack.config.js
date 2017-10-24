@@ -1,26 +1,26 @@
 // eslint-disable-next-line
-const path = require('path');
+const path = require('path')
 
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
-const BundleAnalyzer = require('webpack-bundle-analyzer');
-const { getIfUtils, removeEmpty } = require('webpack-config-utils');
+const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
+const BundleAnalyzer = require('webpack-bundle-analyzer')
+const { getIfUtils, removeEmpty } = require('webpack-config-utils')
 
-const aliases = require('./webpack.aliases');
+const aliases = require('./webpack.aliases')
 
-const hostname = process.env.VIRTUAL_HOST || 'admin-client-assets.dnt.local';
-const port = process.env.VIRTUAL_PORT || '3000';
-const publicPathDev = `http://${hostname}/`;
-const publicPathProd = '/admin-client-assets/';
-const basePath = path.resolve(__dirname, '..');
-const baseOuputPath = path.resolve(basePath, 'build');
+const hostname = process.env.VIRTUAL_HOST || 'admin-client-assets.dnt.local'
+const port = process.env.VIRTUAL_PORT || '3000'
+const publicPathDev = `http://${hostname}/`
+const publicPathProd = '/admin-client-assets/'
+const basePath = path.resolve(__dirname, '..')
+const baseOuputPath = path.resolve(basePath, 'build')
 
 
 const cssApp = new ExtractTextPlugin(path.resolve(
   __dirname, 'css', 'admin-client.[hash].css'
-));
+))
 
 
 const createLessRule = (extractor, fileRegexps, issuerRegexs) => ({
@@ -35,20 +35,20 @@ const createLessRule = (extractor, fileRegexps, issuerRegexs) => ({
   test: (fileName) => {
     const match = fileRegexps
       .map((r) => fileName.match(r))
-      .reduce((acc, n) => acc || !!n, false);
-    return match;
+      .reduce((acc, n) => acc || !!n, false)
+    return match
   },
   issuer: (issuerPath) => {
     const match = issuerRegexs
       .map((r) => issuerPath.match(r))
-      .reduce((acc, n) => acc || !!n, false);
-    return match;
+      .reduce((acc, n) => acc || !!n, false)
+    return match
   },
-});
+})
 
 
 module.exports = (env) => {
-  const { ifDevelopment, ifProduction } = getIfUtils(env);
+  const { ifDevelopment, ifProduction } = getIfUtils(env)
 
   return {
     devtool: ifDevelopment('eval-source-map', 'nosources-source-map'),
@@ -263,5 +263,5 @@ module.exports = (env) => {
         ),
       },
     },
-  };
-};
+  }
+}

@@ -29,6 +29,7 @@ module.exports = {
     }
   },
   "rules": {
+    "semi": [2, "never"],
     "strict": [2, "global"],
     "import/first": [0],
     "global-require": [0],

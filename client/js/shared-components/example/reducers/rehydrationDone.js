@@ -1,13 +1,13 @@
-import { REHYDRATE } from 'redux-persist/es/constants';
+import { REHYDRATE } from 'redux-persist/es/constants'
 
 const rehydrationDone = (state = false, action) => {
   switch (action.type) {
     case REHYDRATE:
-      return true;
+      return true
     default:
-      return state;
+      return state
   }
-};
+}
 
 
-export default rehydrationDone;
+export default rehydrationDone

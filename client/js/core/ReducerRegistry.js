@@ -1,31 +1,31 @@
 // Based on https://github.com/insin/react-examples/tree/master/code-splitting-redux-reducers
-import log from 'lib/log';
+import log from 'lib/log'
 
 
 class ReducerRegistry {
   constructor(initialReducers = {}) {
-    this.reducers = {...initialReducers};
-    this.emitChange = null;
+    this.reducers = {...initialReducers}
+    this.emitChange = null
   }
 
   register(newReducers) {
-    this.reducers = {...this.reducers, ...newReducers};
+    this.reducers = {...this.reducers, ...newReducers}
     if (this.emitChange != null) {
-      this.emitChange(this.getReducers());
+      this.emitChange(this.getReducers())
     }
   }
 
   getReducers() {
-    return {...this.reducers};
+    return {...this.reducers}
   }
 
   setChangeListener(listener) {
     if (this.emitChange != null) {
-      throw new Error('Can only set the listener for a ReducerRegistry once.');
+      throw new Error('Can only set the listener for a ReducerRegistry once.')
     }
-    this.emitChange = listener;
+    this.emitChange = listener
   }
 }
 
 
-export default ReducerRegistry;
+export default ReducerRegistry

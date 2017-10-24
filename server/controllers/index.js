@@ -12,12 +12,6 @@ const router = new Router();
 router.use(morgan('combined'));
 
 
-// Return React app if user is authenticated or redirect to login
-router.get('/', (req, res, next) => {
-  res.render('app.html');
-});
-
-
 router.get('/robots.txt', (req, res, next) => {
   res.type('text/plain').send('User-agent: *\r\nDisallow: /');
 });
@@ -25,6 +19,12 @@ router.get('/robots.txt', (req, res, next) => {
 
 // Add controllers
 router.use('/api', apiController);
+
+
+// Return React app if user is authenticated or redirect to login
+router.get('*', (req, res, next) => {
+  res.render('app.html');
+});
 
 
 module.exports = router;

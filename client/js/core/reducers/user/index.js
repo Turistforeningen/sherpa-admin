@@ -1,10 +1,10 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from 'redux'
 
-import persisted from './persisted';
-import data from './data';
-import fetching from './fetching';
-import fetchError from './fetchError';
-import fetchTimestamp from './fetchTimestamp';
+import persisted from './persisted'
+import data from './data'
+import fetching from './fetching'
+import fetchError from './fetchError'
+import fetchTimestamp from './fetchTimestamp'
 
 
 const userReducer = combineReducers({
@@ -13,7 +13,7 @@ const userReducer = combineReducers({
   fetching,
   fetchError,
   fetchTimestamp,
-});
+})
 
 
-export default userReducer;
+export default userReducer

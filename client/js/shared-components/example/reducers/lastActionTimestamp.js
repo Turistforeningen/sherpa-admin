@@ -1,16 +1,16 @@
-import { INCREMENT } from '../actions/increment';
-import { DECREMENT } from '../actions/decrement';
+import { INCREMENT } from '../actions/increment'
+import { DECREMENT } from '../actions/decrement'
 
 
 const lastActionTimestamp = (state = null, action) => {
   switch (action.type) {
     case INCREMENT:
     case DECREMENT:
-      return new Date();
+      return new Date()
     default:
-      return state;
+      return state
   }
-};
+}
 
 
-export default lastActionTimestamp;
+export default lastActionTimestamp

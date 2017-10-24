@@ -1,19 +1,19 @@
-import * as fetchTypes from 'core/actions/user/fetch';
-import * as logoutTypes from 'core/actions/user/logout';
+import * as fetchTypes from 'core/actions/user/fetch'
+import * as logoutTypes from 'core/actions/user/logout'
 
 
 const fetching = (state = false, action) => {
   switch (action.type) {
     case fetchTypes.FETCH:
-      return true;
+      return true
     case fetchTypes.SUCCESS:
     case fetchTypes.ERROR:
     case logoutTypes.LOGOUT:
-      return false;
+      return false
     default:
-      return state;
+      return state
   }
-};
+}
 
 
-export default fetching;
+export default fetching
