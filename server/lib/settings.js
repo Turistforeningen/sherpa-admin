@@ -1,8 +1,8 @@
-'use strict';
+'use strict'
 
-const fs = require('fs');
+const fs = require('fs')
 
-const environment = require('./environment');
+const environment = require('./environment')
 
 
 const variables = [
@@ -39,30 +39,30 @@ const variables = [
     name: 'LIBRATO_TOKEN',
     env: ['production'],
   },
-];
+]
 
 
 function getFromJson(file) {
   try {
     return JSON.parse(
       fs.readFileSync(file, {encoding: 'utf-8'})
-    );
+    )
   } catch (err) {
-    throw new Error(`Could not read secrets file "${file}"`);
+    throw new Error(`Could not read secrets file "${file}"`)
   }
 }
 
 
-let settings;
+let settings
 
 
 // Set settings from secrets file
 if (environment.development || environment.test) {
-  settings = getFromJson(`${__dirname}/../../secrets-dev/dev.json`);
+  settings = getFromJson(`${__dirname}/../../secrets-dev/dev.json`)
 } else if (environment.production) {
-  settings = getFromJson('/secrets/prod.json');
+  settings = getFromJson('/secrets/prod.json')
 } else {
-  throw new Error('Environment variable "NODE_ENV" is undefined or invalid');
+  throw new Error('Environment variable "NODE_ENV" is undefined or invalid')
 }
 
 
@@ -70,19 +70,19 @@ if (environment.development || environment.test) {
 variables
   .filter((variable) => {
     if (variable.env) {
-      return variable.env.includes(process.env.NODE_ENV);
+      return variable.env.includes(process.env.NODE_ENV)
     }
-    return true;
+    return true
   })
   .forEach((variable) => {
     if (typeof settings[variable.name] === 'undefined') {
       if (typeof variable.default !== 'undefined') {
-        settings[variable.name] = variable.default;
+        settings[variable.name] = variable.default
       } else {
-        throw new Error(`Environvent variable ${variable.name} is missing`);
+        throw new Error(`Environvent variable ${variable.name} is missing`)
       }
     }
-  });
+  })
 
 
-module.exports = settings;
+module.exports = settings

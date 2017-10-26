@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import { autobind } from 'core-decorators'
 import universal from 'react-universal-component'
 import universalOptions from 'core/universalOptions'
+import { replace as routerReplace } from 'react-router-redux'
+import connect from 'lib/wrappedConnect'
 import log from 'lib/log'
 
 import inc from 'core/actions/user/inc'
-import { getPath } from 'core/selectors/router'
+import { getPath, getQueryParams } from 'core/selectors/router'
 import { getFetchTimestamp, getInc } from 'core/selectors/user'
+import setOAuthTokens from 'core/actions/user/setOAuthTokens'
 
 import { Route } from 'react-router'
 import { Link } from 'react-router-dom'
@@ -30,6 +32,22 @@ class App extends Component {
     super(props)
 
     this.state = { loadExample: false }
+  }
+
+  componentWillMount() {
+    const { actions, path, queryParams } = this.props
+
+    // Set OAuthTokens defined from server
+    const { OAuthTokens } = (window.sherpa || {})
+    if (OAuthTokens) {
+      actions.setOAuthTokens(OAuthTokens)
+    }
+
+    // If on an OAuth path (/o/verify/) redirect to `next` or dashboard
+    if (path.startsWith('/o/')) {
+      const nextPath = `/${queryParams.next || ''}`
+      actions.routerReplace(nextPath)
+    }
   }
 
   @autobind
@@ -90,16 +108,15 @@ class App extends Component {
 const mapStateToProps = (state) => ({
   fetchTimestamp: getFetchTimestamp(state),
   incValue: getInc(state),
-  routerPath: getPath(state),
+  path: getPath(state),
+  queryParams: getQueryParams(state),
 })
 
 
-const connectedComponent = connect(
+const ConnectedComponent = connect(
   mapStateToProps,
-  { inc },
-  (stateProps, dispatchProps, ownProps) =>
-    Object.assign({}, ownProps, stateProps, {actions: dispatchProps})
+  { inc, setOAuthTokens, routerReplace }
 )(App)
 
 
-export default connectedComponent
+export default ConnectedComponent

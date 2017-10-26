@@ -7,6 +7,14 @@
     <title>Sherpa</title>
     <meta name="description" content="Sherpa admin client">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript">
+      var sherpa = {};
+      sherpa.version = "{{ VERSION }}";
+
+      {% if OAuthTokens %}
+        sherpa.OAuthTokens = {{ OAuthTokens | safe }};
+      {% endif %}
+    </script>
   </head>
   <body>
     <div id="root"></div>

@@ -9,7 +9,6 @@ import fetchTimestamp from './fetchTimestamp'
 
 const userReducer = combineReducers({
   persisted,
-  data,
   fetching,
   fetchError,
   fetchTimestamp,

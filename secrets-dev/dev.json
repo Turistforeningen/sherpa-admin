@@ -3,7 +3,7 @@
   "SENTRY_DSN": "https://30b579809f20453386e3ff586a1435a9:69238b1412044ec291383b9b84dbb8bf@sentry.io/173396",
   "OAUTH_CLIENT_ID": "0tqpellciVDIegXO7KQDFdXhUzWVPut6XjBuMVtz",
   "OAUTH_CLIENT_SECRET": "uj9sSdHiQT3G79aRRY27csEchNTx3LZbBlICcO2Wstd0r3lTIUgA7yjXzuOWqFEb1Ng5KSSMoa7xFeyQ8BrE3qDSTN6MKfNUyHrKDacVAp042C4Wfe79c1qfhInrHeWB",
-  "OAUTH_DOMAIN": "http://www.dnt.local",
+  "OAUTH_DOMAIN": "https://www.dnt.no",
   "GA_CODE": "",
   "GTM_CODE": ""
 }

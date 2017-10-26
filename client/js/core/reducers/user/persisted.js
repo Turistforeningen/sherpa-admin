@@ -3,6 +3,8 @@ import { persistReducer } from 'redux-persist'
 import storage from 'redux-persist/es/storage'
 
 import inc from './inc'
+import OAuthTokens from './OAuthTokens'
+import data from './data'
 
 
 const persistConfig = {
@@ -13,6 +15,8 @@ const persistConfig = {
 
 
 const rootReducer = combineReducers({
+  OAuthTokens,
+  data,
   inc,
 })
 

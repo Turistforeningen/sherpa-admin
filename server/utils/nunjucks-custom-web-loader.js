@@ -1,19 +1,19 @@
-'use strict';
+'use strict'
 
-const { Loader } = require('nunjucks');
+const { Loader } = require('nunjucks')
 
-const loadFromWebpackDevServer = require('./load-from-webpack-dev-server');
+const loadFromWebpackDevServer = require('./load-from-webpack-dev-server')
 
 
 const NunjuckCustomWebLoader = Loader.extend({
   async: true,
 
   init: (baseURL) => {
-    this.baseURL = baseURL || '.';
+    this.baseURL = baseURL || '.'
   },
 
   getSource: (name, cb) => {
-    let result;
+    let result
     try {
       loadFromWebpackDevServer(`${this.baseURL}/${name}`)
         .then((src) => {
@@ -21,17 +21,17 @@ const NunjuckCustomWebLoader = Loader.extend({
             src,
             path: name,
             noCache: !this.useCache,
-          };
-          if (cb) {
-            cb(null, result);
           }
-        });
+          if (cb) {
+            cb(null, result)
+          }
+        })
     } catch (e) {
-      console.log('UNABLE TO LOAD TEMPLATE FROM WEBPACK');
-      console.log(e);
+      console.log('UNABLE TO LOAD TEMPLATE FROM WEBPACK')
+      console.log(e)
     }
   },
-});
+})
 
 
-module.exports = NunjuckCustomWebLoader;
+module.exports = NunjuckCustomWebLoader
