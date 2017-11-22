@@ -15,7 +15,7 @@ const fetchOptions = {
 const checkStatus = (res) => {
   const headerOpts = {
     apiVersion: res.headers.get('API-VERSION'),
-    adminVersion: res.headers.get('ADMIN-VERSION'),
+    appVersion: res.headers.get('APP-VERSION'),
   }
   if (res.status >= 200 && res.status < 300) {
     return Promise.resolve({headerOpts, res})

@@ -26,7 +26,7 @@ services:
       - VIRTUAL_PATH=/
       - LIBRATO_PREFIX=sherpa-admin-client
       - LIBRATO_SOURCE=sherpa-admin-client-dev
-    command: nodemon --watch server server/index.js
+    command: nodemon --watch server --watch secrets-dev server/index.js
     extra_hosts:
       - "www.dnt.local:10.200.10.1"
       - "admin-client-assets.dnt.local:10.200.10.1"

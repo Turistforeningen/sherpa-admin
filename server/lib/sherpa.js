@@ -233,15 +233,6 @@ const userAuthenticate = (email, password, userId = null, smsAuth = false) => {
 }
 
 
-const userAuthenticateByAdminToken = (userId, token) => {
-  const body = {
-    user_id: userId,
-    token,
-  }
-  return clientPostAPIRequest('users/auth/ratatoskr-admin-code/', body)
-}
-
-
 const userRefreshToken = (tokens) =>
   getUserTokensByRefreshTokenFromSherpa(tokens.refresh_token)
 
@@ -255,7 +246,6 @@ module.exports = {
   },
   user: {
     authenticate: userAuthenticate,
-    authenticateByAdminToken: userAuthenticateByAdminToken,
     get: userGetAPIRequest,
     post: userPostAPIRequest,
     refreshToken: userRefreshToken,

@@ -31,15 +31,15 @@ const setTokenHeaders = (res, user) => {
     user.OAuthTokens.access_token &&
     user.OAuthTokens.refresh_token
   ) {
-    res.header('ADMIN-AT', user.OAuthTokens.access_token)
-    res.header('ADMIN-RT', user.OAuthTokens.refresh_token)
+    res.header('APP-AT', user.OAuthTokens.access_token)
+    res.header('APP-RT', user.OAuthTokens.refresh_token)
   }
 }
 
 
 // Add version header
 router.use((req, res, next) => {
-  res.header('ADMIN-VERSION', version.tag)
+  res.header('APP-VERSION', version.tag)
   next()
 })
 
@@ -52,8 +52,8 @@ router.get('/version', (req, res, next) => {
 
 // Get user data from Sherpa
 router.get('/user/me', (req, res, next) => {
-  const accessToken = req.get('ADMIN-AT')
-  const refreshToken = req.get('ADMIN-RT')
+  const accessToken = req.get('APP-AT')
+  const refreshToken = req.get('APP-RT')
 
   if (!accessToken || !refreshToken) {
     // Tokens are not set, return empty user object (logout)
